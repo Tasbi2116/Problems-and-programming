@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    char word1[1000],word2[1000],word3[1000];
+    //gets(word2);
+    int count = 0;
+    FILE *ptr1,*ptr2,*ptr3,*ptr4, *ptr5;
+    /*ptr2 = fopen("input.txt","w");
+    fprintf(ptr2,"%s",word2);
+    fclose(ptr2);*/
+
+    //word counting.
+    ptr2 = fopen("input.txt","r"); //opening a text file.
+    while(fscanf(ptr2,"%s",word2) != EOF)
+    {
+        count++;
+        printf("%s ",word2);
+    }
+    fclose(ptr2);
+    printf("\nNumber of words = %d\n",count);
+
+    ptr3 = fopen("input.txt","r");
+
+    //vowel & consonant identifying
+    ptr4 = fopen("vowelwords.txt","w"); //opening vowel words text file.
+    ptr2 = fopen("consonantwords.txt","w"); //opening consonant text file.
+    while(fscanf(ptr3,"%s",word2) != EOF)
+    {
+        if(word2[0] == 'A' || word2[0] == 'a' || word2[0] == 'E' || word2[0] == 'e' || word2[0] == 'I' || word2[0] == 'i' || word2[0] == 'O' || word2[0] == 'o' || word2[0] == 'U' || word2[0] == 'u')
+        {
+            fputs(ptr2,ptr4);
+            fputc('\n',ptr4);
+        }
+        else if{
+            fputs(word2,ptr2);
+            fputc(' ',ptr2);
+        }
+    }
+    fclose(ptr3);
+    fclose(ptr4);
+    fclose(ptr2);
+
+    //identifying integers as words.
+    return 0;
+}
